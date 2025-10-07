@@ -1,62 +1,57 @@
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
+  darkMode: 'class',
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
-    './content/**/*.{md,mdx}',
   ],
-  darkMode: 'class',
   theme: {
     extend: {
-      colors: {
-        background: '#0b0d10',
-        foreground: '#e5e7eb',
-        primary: {
-          DEFAULT: '#111315',
-          foreground: '#e5e7eb',
-        },
-        secondary: {
-          DEFAULT: '#1f2937',
-          foreground: '#e5e7eb',
-        },
-        accent: {
-          DEFAULT: '#10b981',
-          foreground: '#ffffff',
-        },
-        sky: {
-          DEFAULT: '#38bdf8',
-          foreground: '#ffffff',
-        },
-        muted: {
-          DEFAULT: '#374151',
-          foreground: '#9ca3af',
-        },
-      },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Consolas', 'monospace'],
+        sans: ['var(--font-geist-sans)'],
+        mono: ['var(--font-geist-mono)'],
       },
-      container: {
-        center: true,
-        padding: '1rem',
-        screens: {
-          '2xl': '1400px',
+      colors: {
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+        card: 'hsl(var(--card))',
+        'card-foreground': 'hsl(var(--card-foreground))',
+        primary: 'hsl(var(--primary))',
+        'primary-foreground': 'hsl(var(--primary-foreground))',
+        muted: 'hsl(var(--muted))',
+        'muted-foreground': 'hsl(var(--muted-foreground))',
+        accent: 'hsl(var(--accent))',
+        'accent-foreground': 'hsl(var(--accent-foreground))',
+        border: 'hsl(var(--border))',
+      },
+      animation: {
+        'fade-in': 'fade-in 0.5s ease-in-out',
+        'fade-up': 'fade-up 0.5s ease-out',
+        'slide-in': 'slide-in 0.5s ease-out',
+        float: 'float 6s ease-in-out infinite',
+      },
+      keyframes: {
+        'fade-in': {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
         },
-      },
-      borderRadius: {
-        '2xl': '1rem',
-      },
-      boxShadow: {
-        'soft': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+        'fade-up': {
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        'slide-in': {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(0)' },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/typography'),
-  ],
+  plugins: [],
 }
-
 export default config
-

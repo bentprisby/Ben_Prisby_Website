@@ -1,24 +1,41 @@
-## bentprisby.com
+# Ben Prisby Portfolio
 
-Next.js portfolio with MDX content, typed SEO helpers, and Tailwind UI.
+A modern, responsive portfolio website built with Next.js 14, TypeScript, and Tailwind CSS.
 
-### Commands
+## 🚀 Features
+
+- ✨ Modern, minimal design
+- 🌙 Dark/Light mode support
+- 📱 Fully responsive design
+- ⚡ Lightning fast with Next.js 14
+- 🎨 Smooth animations with Framer Motion
+- 📊 Interactive charts for personal stats
+- 🔍 SEO optimized
+- 📄 Resume download
+- 📧 Contact form integration
+
+## 🛠 Tech Stack
+
+- **Framework:** Next.js 14
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **Animations:** Framer Motion
+- **Charts:** Recharts
+- **Icons:** Lucide React
+
+## 📦 Installation
 
 ```bash
+npm install
 npm run dev
-npm run build
-npm run start
 ```
 
-### Content
+## 🤝 Connect
 
-- Posts: `content/posts/*.mdx`
-- Projects: `content/projects/*.mdx`
+- LinkedIn: [Ben Prisby](https://www.linkedin.com/in/prisbyb/)
+- GitHub: [@bentprisby](https://github.com/bentprisby)
+- Email: prisbybe@msu.edu
 
-### Routes
+---
 
-- `/` Home (featured projects, latest posts)
-- `/about`
-- `/projects` and `/projects/[slug]`
-- `/blog` and `/blog/[slug]`
-- `/contact`
+Built with ❤️ by Ben Prisby
