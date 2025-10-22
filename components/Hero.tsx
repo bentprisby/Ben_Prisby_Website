@@ -58,7 +58,7 @@ export default function Hero() {
               </Link>
               <Link
                 href="mailto:bentprisby@gmail.com"
-                className="venmo-button flex items-center gap-2"
+                className="venmo-button-secondary flex items-center gap-2"
               >
                 <Mail className="w-4 h-4 email-icon" />
                 Email
