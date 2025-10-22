@@ -23,9 +23,6 @@ export default function Hero() {
             <p className="text-xl sm:text-2xl text-muted-foreground mb-4">
               Industrial Engineer who can code
             </p>
-            <p className="text-lg text-muted-foreground mb-8">
-              Philosophy • Building • Design • Music
-            </p>
             <p className="text-base text-muted-foreground mb-8 leading-relaxed">
               I enjoy philosophy, the gym, building things, hunting, skiing, surfing, 
               running, design, fixing things, and music. Passionate about creating 

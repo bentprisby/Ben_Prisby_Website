@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, Area, AreaChart, PieChart, Pie, Cell } from 'recharts'
 import { Dumbbell, BookOpen, Heart, Activity, TrendingUp, Calendar } from 'lucide-react'
 import { useState, useEffect } from 'react'
-import RealTimeDataEntry from './RealTimeDataEntry'
 
 interface TrackingData {
   gymSessions: Array<{ date: string; went: boolean; muscleGroup?: string }>
@@ -15,10 +14,6 @@ interface TrackingData {
 
 export default function TrackingDashboard() {
   const [data, setData] = useState<TrackingData | null>(null)
-
-  const handleDataUpdate = (newData: TrackingData) => {
-    setData(newData)
-  }
 
   // Load data from localStorage on component mount
   useEffect(() => {
@@ -145,8 +140,6 @@ export default function TrackingDashboard() {
           <p className="text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
             Tracking my fitness, study habits, and personal development metrics
           </p>
-
-          <RealTimeDataEntry onDataUpdate={handleDataUpdate} />
 
           {/* Current Stats */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">

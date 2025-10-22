@@ -83,32 +83,6 @@ export default function Contact() {
                   </div>
                 </div>
               </div>
-
-              <div className="mt-8 venmo-card card-hover">
-                <h4 className="font-semibold mb-3">Let&apos;s Connect</h4>
-                <p className="text-sm text-muted-foreground mb-4">
-                  I&apos;m always interested in discussing new opportunities, innovative projects, 
-                  and ways to apply engineering principles to solve real-world problems.
-                </p>
-                <div className="flex gap-4">
-                  <a
-                    href="https://www.linkedin.com/in/prisbyb/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="venmo-button flex items-center gap-2"
-                  >
-                    LinkedIn
-                  </a>
-                  <a
-                    href="https://github.com/bentprisby"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="venmo-button-secondary flex items-center gap-2"
-                  >
-                    GitHub
-                  </a>
-                </div>
-              </div>
             </motion.div>
 
             <motion.div

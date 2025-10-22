@@ -1,33 +1,69 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { TrendingUp, Code, Users, Award } from 'lucide-react'
+import { TrendingUp, Briefcase, Globe, Target } from 'lucide-react'
+import { useState, useEffect } from 'react'
 
 export default function Stats() {
+  const [milesRan, setMilesRan] = useState(0)
+  const [isLoading, setIsLoading] = useState(true)
+  const businessesStarted = 2
+  const businessesList = ["Onyx Detailing Solutions (Auto detailing company)"]
+  const countriesVisited = 10
+  const countriesList = ["USA", "Canada", "Mexico", "UK", "Montenegro", "Serbia", "Italy", "Hungary", "Austria", "France"]
+  const longestFieldGoal = 40
+
+  // Fetch miles ran data from Strava
+  useEffect(() => {
+    const fetchStravaData = async () => {
+      try {
+        // TODO: Replace with your actual Strava API endpoint
+        // You'll need to set up Strava OAuth and store your access token
+        const response = await fetch('/api/strava/stats')
+        
+        if (response.ok) {
+          const data = await response.json()
+          setMilesRan(data.totalMiles || 0)
+        } else {
+          // Fallback to placeholder value if API fails
+          setMilesRan(1247)
+        }
+      } catch (error) {
+        console.error('Error fetching Strava data:', error)
+        // Fallback to placeholder value
+        setMilesRan(1247)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchStravaData()
+  }, [])
+
   const stats = [
     {
       icon: <TrendingUp className="w-8 h-8" />,
-      value: "$20M+",
-      label: "Cost Savings Generated",
-      description: "Through supply chain optimizations"
+      value: isLoading ? '...' : milesRan.toLocaleString(),
+      label: "Miles Ran",
+      description: "Total distance on Strava"
     },
     {
-      icon: <Code className="w-8 h-8" />,
-      value: "3,000+",
-      label: "Automated Workflows",
-      description: "Weekly client inquiries processed"
+      icon: <Briefcase className="w-8 h-8" />,
+      value: businessesStarted.toString(),
+      label: "Businesses Started",
+      description: "Entrepreneurial ventures launched"
     },
     {
-      icon: <Users className="w-8 h-8" />,
-      value: "3",
-      label: "Team Members Led",
-      description: "In business operations"
+      icon: <Globe className="w-8 h-8" />,
+      value: countriesVisited.toString(),
+      label: "Countries Visited",
+      description: "Places explored worldwide"
     },
     {
-      icon: <Award className="w-8 h-8" />,
-      value: "387%",
-      label: "Efficiency Improvement",
-      description: "Energy consumption reduction"
+      icon: <Target className="w-8 h-8" />,
+      value: `${longestFieldGoal} yards`,
+      label: "Longest Field Goal Kicked",
+      description: "Personal best distance"
     }
   ]
 

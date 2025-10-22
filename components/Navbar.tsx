@@ -18,8 +18,9 @@ export default function Navbar() {
   const navItems = [
     { href: '#about', label: 'About' },
     { href: '#experience', label: 'Experience' },
-    { href: '#projects', label: 'Projects' },
-    { href: '#tracking', label: 'Tracking' },
+    { href: '#skills', label: 'Skills' },
+    { href: '#goals', label: 'Goals' },
+    { href: '#philosophy', label: 'Philosophy' },
     { href: '#stats', label: 'Stats' },
     { href: '#contact', label: 'Contact' },
   ]
@@ -30,8 +31,8 @@ export default function Navbar() {
     }`}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <Link href="/" className="font-bold text-xl">
-            Ben Prisby
+          <Link href="/" className="font-bold text-2xl">
+            BEN PRISBY
           </Link>
 
           <div className="hidden md:flex items-center space-x-8">

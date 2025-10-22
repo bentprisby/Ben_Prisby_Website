@@ -8,7 +8,7 @@ export default function About() {
     {
       icon: <GraduationCap className="w-6 h-6" />,
       title: "Education",
-      description: "B.S. Industrial Engineering & Supply Chain Management at Michigan State University (2021-2025)"
+      description: "B.S. Industrial Engineering, concentrating in Supply Chain Management at Michigan State University (2021-2025)"
     },
     {
       icon: <Target className="w-6 h-6" />,
