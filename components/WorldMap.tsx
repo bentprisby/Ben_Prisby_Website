@@ -105,7 +105,7 @@ export default function WorldMap() {
         transition={{ delay: 0.5, duration: 0.4 }}
         className="absolute bottom-2 left-2 bg-card/90 backdrop-blur-sm px-2 py-1 rounded-md border border-border"
       >
-        <p className="text-xs font-medium text-foreground">Novi, Michigan</p>
+        <p className="text-xs font-medium text-foreground">Metro Detroit, Michigan</p>
       </motion.div>
     </motion.div>
   )
