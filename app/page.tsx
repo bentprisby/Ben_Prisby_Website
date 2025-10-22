@@ -10,6 +10,8 @@ import TrackingDashboard from '@/components/TrackingDashboard'
 import Stats from '@/components/Stats'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
+import { ErrorBoundary } from '@/components/ErrorBoundary'
+import { INTERSECTION_THRESHOLD } from '@/lib/constants'
 
 export default function Home() {
   useEffect(() => {
@@ -21,7 +23,7 @@ export default function Home() {
           }
         })
       },
-      { threshold: 0.1 }
+      { threshold: INTERSECTION_THRESHOLD }
     )
 
     document.querySelectorAll('section').forEach((section) => {
@@ -32,18 +34,20 @@ export default function Home() {
   }, [])
 
   return (
-    <>
+    <ErrorBoundary>
       <Navbar />
       <main className="relative">
         <Hero />
         <About />
         <Experience />
         <Projects />
-        <TrackingDashboard />
+        <ErrorBoundary>
+          <TrackingDashboard />
+        </ErrorBoundary>
         <Stats />
         <Contact />
       </main>
       <Footer />
-    </>
+    </ErrorBoundary>
   )
 }

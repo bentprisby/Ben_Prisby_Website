@@ -1,21 +1,17 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { Upload, FileText, CheckCircle, AlertCircle } from 'lucide-react'
-
-interface UploadedData {
-  gymSessions: Array<{ date: string; went: boolean; muscleGroup?: string }>
-  studyHours: Array<{ date: string; hours: number }>
-  yogaSessions: Array<{ date: string; didYoga: boolean }>
-  rowingTimes: Array<{ date: string; time: string; meters: number }>
-}
+import { saveTrackingData } from '@/lib/storage'
+import { downloadJSON } from '@/lib/utils'
+import { ANIMATION_DURATION, DEFAULT_ROWING_DISTANCE } from '@/lib/constants'
+import type { TrackingData, UploadStatus } from '@/lib/types'
 
 export default function DataUpload() {
-  const [uploadStatus, setUploadStatus] = useState<'idle' | 'uploading' | 'success' | 'error'>('idle')
-  const [uploadedData, setUploadedData] = useState<UploadedData | null>(null)
+  const [uploadStatus, setUploadStatus] = useState<UploadStatus>('idle')
 
-  const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileUpload = useCallback(async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
     if (!file) return
 
@@ -23,15 +19,25 @@ export default function DataUpload() {
 
     try {
       const text = await file.text()
-      const data = JSON.parse(text)
-      
+      const data: unknown = JSON.parse(text)
+
       // Validate data structure
-      if (data.gymSessions && data.studyHours && data.yogaSessions && data.rowingTimes) {
-        setUploadedData(data)
-        setUploadStatus('success')
-        
-        // Store in localStorage for persistence
-        localStorage.setItem('trackingData', JSON.stringify(data))
+      if (
+        data &&
+        typeof data === 'object' &&
+        'gymSessions' in data &&
+        'studyHours' in data &&
+        'yogaSessions' in data &&
+        'rowingTimes' in data
+      ) {
+        const success = saveTrackingData(data as TrackingData)
+        if (success) {
+          setUploadStatus('success')
+          // Reload page to reflect changes
+          setTimeout(() => window.location.reload(), 1500)
+        } else {
+          setUploadStatus('error')
+        }
       } else {
         throw new Error('Invalid data format')
       }
@@ -39,53 +45,48 @@ export default function DataUpload() {
       console.error('Error parsing data:', error)
       setUploadStatus('error')
     }
-  }
 
-  const downloadTemplate = () => {
-    const template = {
+    // Reset file input
+    event.target.value = ''
+  }, [])
+
+  const downloadTemplate = useCallback(() => {
+    const template: TrackingData = {
       gymSessions: [
-        { date: "2024-01-01", went: true, muscleGroup: "Chest" },
-        { date: "2024-01-02", went: false, muscleGroup: "" },
-        { date: "2024-01-03", went: true, muscleGroup: "Back" }
+        { date: '2024-01-01', went: true, muscleGroup: 'Chest' },
+        { date: '2024-01-02', went: false },
+        { date: '2024-01-03', went: true, muscleGroup: 'Back' },
       ],
       studyHours: [
-        { date: "2024-01-01", hours: 6 },
-        { date: "2024-01-02", hours: 4 },
-        { date: "2024-01-03", hours: 8 }
+        { date: '2024-01-01', hours: 6 },
+        { date: '2024-01-02', hours: 4 },
+        { date: '2024-01-03', hours: 8 },
       ],
       yogaSessions: [
-        { date: "2024-01-01", didYoga: true },
-        { date: "2024-01-02", didYoga: false },
-        { date: "2024-01-03", didYoga: true }
+        { date: '2024-01-01', didYoga: true },
+        { date: '2024-01-02', didYoga: false },
+        { date: '2024-01-03', didYoga: true },
       ],
       rowingTimes: [
-        { date: "2024-01-01", time: "7:45", meters: 2000 },
-        { date: "2024-01-15", time: "7:32", meters: 2000 },
-        { date: "2024-01-30", time: "7:28", meters: 2000 }
-      ]
+        { date: '2024-01-01', time: '7:45', meters: DEFAULT_ROWING_DISTANCE },
+        { date: '2024-01-15', time: '7:32', meters: DEFAULT_ROWING_DISTANCE },
+        { date: '2024-01-30', time: '7:28', meters: DEFAULT_ROWING_DISTANCE },
+      ],
     }
 
-    const blob = new Blob([JSON.stringify(template, null, 2)], { type: 'application/json' })
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = 'tracking-data-template.json'
-    document.body.appendChild(a)
-    a.click()
-    document.body.removeChild(a)
-    URL.revokeObjectURL(url)
-  }
+    downloadJSON(template, 'tracking-data-template.json')
+  }, [])
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: ANIMATION_DURATION.NORMAL }}
       className="venmo-card mb-8"
     >
       <div className="flex items-center gap-2 mb-6">
-        <Upload className="w-5 h-5 text-blue-600" />
+        <Upload className="w-5 h-5 text-blue-600" aria-hidden="true" />
         <h3 className="text-xl font-semibold">Upload Your Data</h3>
       </div>
 
@@ -93,57 +94,68 @@ export default function DataUpload() {
         <div className="flex flex-col sm:flex-row gap-4">
           <button
             onClick={downloadTemplate}
-            className="venmo-button-secondary flex items-center gap-2"
+            className="venmo-button-secondary flex items-center justify-center gap-2"
+            aria-label="Download JSON template file"
           >
-            <FileText className="w-4 h-4" />
+            <FileText className="w-4 h-4" aria-hidden="true" />
             Download Template
           </button>
-          
-          <label className="venmo-button flex items-center gap-2 cursor-pointer">
-            <Upload className="w-4 h-4" />
+
+          <label className="venmo-button flex items-center justify-center gap-2 cursor-pointer">
+            <Upload className="w-4 h-4" aria-hidden="true" />
             Upload Data
             <input
               type="file"
-              accept=".json"
+              accept=".json,application/json"
               onChange={handleFileUpload}
-              className="hidden"
+              className="sr-only"
+              aria-label="Upload tracking data JSON file"
             />
           </label>
         </div>
 
         {uploadStatus === 'uploading' && (
-          <div className="flex items-center gap-2 text-blue-600">
-            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
+          <div className="flex items-center gap-2 text-blue-600" role="status" aria-live="polite">
+            <div
+              className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"
+              aria-hidden="true"
+            />
             <span>Uploading and processing data...</span>
           </div>
         )}
 
         {uploadStatus === 'success' && (
-          <div className="flex items-center gap-2 text-green-600">
-            <CheckCircle className="w-4 h-4" />
+          <div className="flex items-center gap-2 text-green-600" role="alert" aria-live="polite">
+            <CheckCircle className="w-4 h-4" aria-hidden="true" />
             <span>Data uploaded successfully! Charts will update automatically.</span>
           </div>
         )}
 
         {uploadStatus === 'error' && (
-          <div className="flex items-center gap-2 text-red-600">
-            <AlertCircle className="w-4 h-4" />
+          <div className="flex items-center gap-2 text-red-600" role="alert" aria-live="assertive">
+            <AlertCircle className="w-4 h-4" aria-hidden="true" />
             <span>Error uploading data. Please check the format and try again.</span>
           </div>
         )}
 
         <div className="text-sm text-muted-foreground">
-          <p><strong>Data Format:</strong></p>
+          <p className="font-semibold">Data Format:</p>
           <ul className="list-disc list-inside mt-2 space-y-1">
-            <li><strong>Gym Sessions:</strong> Daily yes/no with muscle group worked</li>
-            <li><strong>Study Hours:</strong> Daily study hours</li>
-            <li><strong>Yoga Sessions:</strong> Daily yes/no for yoga practice</li>
-            <li><strong>Rowing Times:</strong> 2K row times with dates</li>
+            <li>
+              <strong>Gym Sessions:</strong> Daily yes/no with muscle group worked
+            </li>
+            <li>
+              <strong>Study Hours:</strong> Daily study hours
+            </li>
+            <li>
+              <strong>Yoga Sessions:</strong> Daily yes/no for yoga practice
+            </li>
+            <li>
+              <strong>Rowing Times:</strong> 2K row times with dates
+            </li>
           </ul>
         </div>
       </div>
     </motion.div>
   )
 }
-
-
