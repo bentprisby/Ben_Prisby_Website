@@ -67,7 +67,6 @@ export default function Contact() {
                     </div>
                     <div>
                       <p className="font-medium">Location</p>
-                      <p className="text-muted-foreground">Metro Detroit, Michigan</p>
                     </div>
                   </div>
                   <WorldMap />
