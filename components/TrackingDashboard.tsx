@@ -54,7 +54,7 @@ export default function TrackingDashboard() {
     return Object.entries(weeklyData).map(([week, data]) => ({
       week: new Date(week).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
       sessions: data.sessions,
-      muscleGroups: [...new Set(data.muscleGroups)].join(', ')
+      muscleGroups: Array.from(new Set(data.muscleGroups)).join(', ')
     }))
   }
 
@@ -271,7 +271,7 @@ export default function TrackingDashboard() {
             <div className="venmo-card max-w-2xl mx-auto">
               <TrendingUp className="w-8 h-8 text-primary mx-auto mb-4" />
               <blockquote className="text-lg italic text-muted-foreground mb-2">
-                "What gets measured gets managed."
+                &ldquo;What gets measured gets managed.&rdquo;
               </blockquote>
               <p className="text-sm text-muted-foreground">- Peter Drucker</p>
             </div>

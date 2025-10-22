@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Trophy, Flame, MapPin, Plane, GraduationCap, BookOpen, Briefcase, Heart, Calendar } from 'lucide-react'
+import { getColorScheme, colorSchemes } from '@/lib/utils'
 
 export default function Goals() {
   const goals = [
@@ -121,7 +122,10 @@ export default function Goals() {
           </p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {goals.map((goal, index) => (
+            {goals.map((goal, index) => {
+              const colorScheme = colorSchemes[getColorScheme(index)]
+
+              return (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
@@ -131,18 +135,7 @@ export default function Goals() {
                 className="group venmo-card card-hover p-6"
               >
                 <div className="flex items-start justify-between mb-4">
-                  <div className={`inline-flex items-center justify-center w-12 h-12 rounded-lg group-hover:scale-110 transition-all ${
-                    index % 10 === 0 ? 'bg-blue-100 text-blue-600' :
-                    index % 10 === 1 ? 'bg-orange-100 text-orange-600' :
-                    index % 10 === 2 ? 'bg-purple-100 text-purple-600' :
-                    index % 10 === 3 ? 'bg-cyan-100 text-cyan-600' :
-                    index % 10 === 4 ? 'bg-emerald-100 text-emerald-600' :
-                    index % 10 === 5 ? 'bg-indigo-100 text-indigo-600' :
-                    index % 10 === 6 ? 'bg-amber-100 text-amber-600' :
-                    index % 10 === 7 ? 'bg-teal-100 text-teal-600' :
-                    index % 10 === 8 ? 'bg-pink-100 text-pink-600' :
-                    'bg-rose-100 text-rose-600'
-                  }`}>
+                  <div className={`inline-flex items-center justify-center w-12 h-12 rounded-lg group-hover:scale-110 transition-all ${colorScheme.bg} ${colorScheme.text}`}>
                     {goal.icon}
                   </div>
                   <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
@@ -177,18 +170,7 @@ export default function Goals() {
                       whileInView={{ width: `${goal.progress}%` }}
                       viewport={{ once: true }}
                       transition={{ duration: 1, delay: index * 0.1 + 0.3 }}
-                      className={`h-full rounded-full ${
-                        index % 10 === 0 ? 'bg-blue-500' :
-                        index % 10 === 1 ? 'bg-orange-500' :
-                        index % 10 === 2 ? 'bg-purple-500' :
-                        index % 10 === 3 ? 'bg-cyan-500' :
-                        index % 10 === 4 ? 'bg-emerald-500' :
-                        index % 10 === 5 ? 'bg-indigo-500' :
-                        index % 10 === 6 ? 'bg-amber-500' :
-                        index % 10 === 7 ? 'bg-teal-500' :
-                        index % 10 === 8 ? 'bg-pink-500' :
-                        'bg-rose-500'
-                      }`}
+                      className={`h-full rounded-full ${colorScheme.progressBar}`}
                     />
                   </div>
                 </div>
@@ -212,7 +194,8 @@ export default function Goals() {
                   </div>
                 )}
               </motion.div>
-            ))}
+              )
+            })}
           </div>
         </motion.div>
       </div>

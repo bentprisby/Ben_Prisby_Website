@@ -71,7 +71,7 @@ export default function Philosophy() {
         >
           <h2 className="text-3xl font-bold mb-4 text-center">Daily Philosophy</h2>
           <p className="text-muted-foreground text-center mb-8 max-w-2xl mx-auto">
-            A thought-provoking quote from history's greatest thinkers, updated daily
+            A thought-provoking quote from history&apos;s greatest thinkers, updated daily
           </p>
 
           <motion.div
@@ -101,7 +101,7 @@ export default function Philosophy() {
               {/* Quote */}
               <blockquote className="text-center mb-8">
                 <p className="text-xl md:text-2xl font-serif italic text-foreground leading-relaxed mb-6">
-                  "{dailyQuote.quote}"
+                  &ldquo;{dailyQuote.quote}&rdquo;
                 </p>
                 
                 <footer className="space-y-2">

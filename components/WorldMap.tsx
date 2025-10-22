@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json"
 
 // Novi, Michigan coordinates
-const noviCoordinates = [-83.4753, 42.4806]
+const noviCoordinates: [number, number] = [-83.4753, 42.4806]
 
 export default function WorldMap() {
   return (
