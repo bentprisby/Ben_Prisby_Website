@@ -25,27 +25,27 @@ export default function Footer() {
               <Link
                 href="https://github.com/bentprisby"
                 target="_blank"
-                className="p-2 rounded-lg border hover:bg-accent transition-colors"
+                className="p-2 rounded-xl border hover:bg-accent transition-colors"
               >
                 <Github className="w-4 h-4" />
               </Link>
               <Link
                 href="https://www.linkedin.com/in/prisbyb/"
                 target="_blank"
-                className="p-2 rounded-lg border hover:bg-accent transition-colors"
+                className="p-2 rounded-xl border hover:bg-accent transition-colors"
               >
                 <Linkedin className="w-4 h-4" />
               </Link>
               <Link
                 href="https://instagram.com/benprisby"
                 target="_blank"
-                className="p-2 rounded-lg border hover:bg-accent transition-colors"
+                className="p-2 rounded-xl border hover:bg-accent transition-colors"
               >
                 <Instagram className="w-4 h-4" />
               </Link>
               <Link
-                href="mailto:prisbybe@msu.edu"
-                className="p-2 rounded-lg border hover:bg-accent transition-colors"
+                href="mailto:bentprisby@gmail.com"
+                className="p-2 rounded-xl border hover:bg-accent transition-colors"
               >
                 <Mail className="w-4 h-4" />
               </Link>
@@ -76,6 +76,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="#tracking" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Tracking
+                </Link>
+              </li>
+              <li>
                 <Link href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">
                   Contact
                 </Link>
@@ -91,7 +96,7 @@ export default function Footer() {
           >
             <h4 className="font-semibold mb-4">Contact Info</h4>
             <div className="space-y-2 text-muted-foreground">
-              <p>prisbybe@msu.edu</p>
+              <p>bentprisby@gmail.com</p>
               <p>East Lansing, Michigan</p>
               <p>Michigan State University</p>
             </div>

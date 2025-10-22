@@ -5,31 +5,31 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --foreground: 0 0% 0%;
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --border: 240 5.9% 90%;
-    --radius: 0.5rem;
+    --card-foreground: 0 0% 0%;
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 0%;
+    --border: 0 0% 90%;
+    --radius: 0.75rem;
   }
 
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 0%;
+    --card-foreground: 0 0% 100%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 0 0% 10%;
+    --accent-foreground: 0 0% 100%;
+    --border: 0 0% 20%;
   }
 }
 
@@ -61,6 +61,49 @@
   }
 
   .glass {
-    @apply bg-background/80 backdrop-blur-md;
+    @apply bg-background/95 backdrop-blur-sm border-b border-border;
+  }
+
+  .venmo-card {
+    @apply bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow;
+  }
+
+  .venmo-button {
+    @apply bg-primary text-primary-foreground px-6 py-3 rounded-xl font-medium hover:opacity-90 transition-opacity;
+  }
+
+  .venmo-button-secondary {
+    @apply bg-muted text-muted-foreground px-6 py-3 rounded-xl font-medium hover:bg-accent hover:text-accent-foreground transition-colors;
+  }
+
+  .github-icon {
+    @apply text-gray-800 hover:text-gray-900;
+  }
+
+  .linkedin-icon {
+    @apply text-blue-600 hover:text-blue-700;
+  }
+
+  .instagram-icon {
+    @apply text-pink-500 hover:text-pink-600;
+  }
+
+  .email-icon {
+    @apply text-red-500 hover:text-red-600;
+  }
+
+  .hero-gradient {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-xl;
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #1e293b 0%, #475569 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }

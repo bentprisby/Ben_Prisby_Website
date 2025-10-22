@@ -7,7 +7,7 @@ import { Github, Linkedin, Instagram, Mail, ArrowDown } from 'lucide-react'
 
 export default function Hero() {
   return (
-    <section className="min-h-screen flex items-center justify-center relative px-4">
+    <section className="min-h-screen flex items-center justify-center relative px-4 hero-gradient">
       <div className="max-w-6xl mx-auto w-full pt-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
@@ -16,49 +16,52 @@ export default function Hero() {
             transition={{ duration: 0.5 }}
           >
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6">
-              Hi, I&apos;m{' '}
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Ben
+              <span className="text-primary">
+                Ben Prisby
               </span>
             </h1>
             <p className="text-xl sm:text-2xl text-muted-foreground mb-4">
-              Industrial Engineer at MSU
+              Industrial Engineer who can code
             </p>
             <p className="text-lg text-muted-foreground mb-8">
-              Kaizen • Iteration • Philosophy
+              Philosophy • Building • Design • Music
             </p>
             <p className="text-base text-muted-foreground mb-8 leading-relaxed">
-              Passionate about building innovative solutions at the intersection of 
-              engineering and technology. Currently exploring AI-driven automation 
-              and supply chain optimization.
+              I enjoy philosophy, the gym, building things, hunting, skiing, surfing, 
+              running, design, fixing things, and music. Passionate about creating 
+              innovative solutions at the intersection of engineering and technology.
             </p>
-            <div className="flex gap-4 flex-wrap">
+            <div className="flex gap-3 flex-wrap">
               <Link
                 href="https://github.com/bentprisby"
                 target="_blank"
-                className="p-3 border rounded-lg hover:bg-accent transition-colors"
+                className="venmo-button-secondary flex items-center gap-2"
               >
-                <Github className="w-5 h-5" />
+                <Github className="w-4 h-4 github-icon" />
+                GitHub
               </Link>
               <Link
                 href="https://www.linkedin.com/in/prisbyb/"
                 target="_blank"
-                className="p-3 border rounded-lg hover:bg-accent transition-colors"
+                className="venmo-button-secondary flex items-center gap-2"
               >
-                <Linkedin className="w-5 h-5" />
+                <Linkedin className="w-4 h-4 linkedin-icon" />
+                LinkedIn
               </Link>
               <Link
                 href="https://instagram.com/benprisby"
                 target="_blank"
-                className="p-3 border rounded-lg hover:bg-accent transition-colors"
+                className="venmo-button-secondary flex items-center gap-2"
               >
-                <Instagram className="w-5 h-5" />
+                <Instagram className="w-4 h-4 instagram-icon" />
+                Instagram
               </Link>
               <Link
-                href="mailto:prisbybe@msu.edu"
-                className="p-3 border rounded-lg hover:bg-accent transition-colors"
+                href="mailto:bentprisby@gmail.com"
+                className="venmo-button flex items-center gap-2"
               >
-                <Mail className="w-5 h-5" />
+                <Mail className="w-4 h-4 email-icon" />
+                Email
               </Link>
             </div>
           </motion.div>
@@ -70,13 +73,12 @@ export default function Hero() {
             className="relative"
           >
             <div className="relative w-full max-w-md mx-auto">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full blur-3xl opacity-20 animate-float"></div>
               <Image
-                src="/profile.jpg"
+                src="/profile.jpeg"
                 alt="Ben Prisby"
                 width={400}
                 height={400}
-                className="relative rounded-2xl shadow-2xl"
+                className="relative rounded-2xl shadow-lg border border-border"
                 priority
               />
             </div>

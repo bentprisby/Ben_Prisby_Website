@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Mail, MapPin, Phone, Send } from 'lucide-react'
 import { useState } from 'react'
+import WorldMap from './WorldMap'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -50,27 +51,30 @@ export default function Contact() {
               
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-xl bg-red-100 text-red-600 flex items-center justify-center">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
                     <p className="font-medium">Email</p>
-                    <p className="text-muted-foreground">prisbybe@msu.edu</p>
+                    <p className="text-muted-foreground">bentprisby@gmail.com</p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <MapPin className="w-5 h-5" />
+                <div className="space-y-3">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center">
+                      <MapPin className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="font-medium">Location</p>
+                      <p className="text-muted-foreground">Novi, Michigan</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-medium">Location</p>
-                    <p className="text-muted-foreground">East Lansing, Michigan</p>
-                  </div>
+                  <WorldMap />
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-xl bg-green-100 text-green-600 flex items-center justify-center">
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
@@ -80,7 +84,7 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="mt-8 p-6 rounded-lg border bg-card">
+              <div className="mt-8 venmo-card card-hover">
                 <h4 className="font-semibold mb-3">Let&apos;s Connect</h4>
                 <p className="text-sm text-muted-foreground mb-4">
                   I&apos;m always interested in discussing new opportunities, innovative projects, 
@@ -91,7 +95,7 @@ export default function Contact() {
                     href="https://www.linkedin.com/in/prisbyb/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition-opacity"
+                    className="venmo-button flex items-center gap-2"
                   >
                     LinkedIn
                   </a>
@@ -99,7 +103,7 @@ export default function Contact() {
                     href="https://github.com/bentprisby"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 border rounded-lg hover:bg-accent transition-colors"
+                    className="venmo-button-secondary flex items-center gap-2"
                   >
                     GitHub
                   </a>
@@ -125,7 +129,7 @@ export default function Contact() {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border bg-background focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full px-4 py-3 rounded-xl border bg-background focus:outline-none focus:ring-2 focus:ring-primary"
                       required
                     />
                   </div>
@@ -139,7 +143,7 @@ export default function Contact() {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border bg-background focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full px-4 py-3 rounded-xl border bg-background focus:outline-none focus:ring-2 focus:ring-primary"
                       required
                     />
                   </div>
@@ -177,7 +181,7 @@ export default function Contact() {
 
                 <button
                   type="submit"
-                  className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition-opacity"
+                  className="w-full venmo-button flex items-center justify-center gap-2"
                 >
                   <Send className="w-4 h-4" />
                   Send Message

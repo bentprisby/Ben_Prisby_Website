@@ -51,9 +51,14 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="flex gap-4 p-6 rounded-lg border bg-card hover:shadow-lg transition-shadow"
+                className="venmo-card flex gap-4 card-hover"
               >
-                <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+                <div className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center ${
+                  index === 0 ? 'bg-blue-100 text-blue-600' :
+                  index === 1 ? 'bg-green-100 text-green-600' :
+                  index === 2 ? 'bg-purple-100 text-purple-600' :
+                  'bg-orange-100 text-orange-600'
+                }`}>
                   {item.icon}
                 </div>
                 <div>

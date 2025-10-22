@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ThemeToggle } from './ThemeToggle'
 import { Menu, X, Download } from 'lucide-react'
 
 export default function Navbar() {
@@ -20,6 +19,7 @@ export default function Navbar() {
     { href: '#about', label: 'About' },
     { href: '#experience', label: 'Experience' },
     { href: '#projects', label: 'Projects' },
+    { href: '#tracking', label: 'Tracking' },
     { href: '#stats', label: 'Stats' },
     { href: '#contact', label: 'Contact' },
   ]
@@ -45,14 +45,13 @@ export default function Navbar() {
               </Link>
             ))}
             <a
-              href="/resume.pdf"
+              href="/Ben Prisby's Resume Oct. 2025.pdf"
               download
-              className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition-opacity"
+              className="venmo-button flex items-center gap-2"
             >
               <Download className="w-4 h-4" />
               Resume
             </a>
-            <ThemeToggle />
           </div>
 
           <button

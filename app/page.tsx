@@ -6,6 +6,7 @@ import Hero from '@/components/Hero'
 import About from '@/components/About'
 import Experience from '@/components/Experience'
 import Projects from '@/components/Projects'
+import TrackingDashboard from '@/components/TrackingDashboard'
 import Stats from '@/components/Stats'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
@@ -38,6 +39,7 @@ export default function Home() {
         <About />
         <Experience />
         <Projects />
+        <TrackingDashboard />
         <Stats />
         <Contact />
       </main>

@@ -51,7 +51,7 @@ export default function Experience() {
   ]
 
   return (
-    <section id="experience" className="py-20 px-4 bg-muted/30">
+    <section id="experience" className="py-20 px-4">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -69,9 +69,14 @@ export default function Experience() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="relative pl-8 border-l-2 border-muted-foreground/20"
+                className="venmo-card relative pl-8 border-l-4 border-primary card-hover"
               >
-                <div className="absolute -left-2 top-0 w-4 h-4 rounded-full bg-primary"></div>
+                <div className={`absolute -left-3 top-0 w-6 h-6 rounded-full border-2 border-background ${
+                  index === 0 ? 'bg-blue-500' :
+                  index === 1 ? 'bg-green-500' :
+                  index === 2 ? 'bg-purple-500' :
+                  'bg-orange-500'
+                }`}></div>
                 
                 <div className="mb-4">
                   <h3 className="text-xl font-semibold flex items-center gap-2">
@@ -100,7 +105,7 @@ export default function Experience() {
                   {exp.tech.map((tech, i) => (
                     <span
                       key={i}
-                      className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm"
+                      className="px-3 py-1 bg-muted text-muted-foreground rounded-xl text-sm"
                     >
                       {tech}
                     </span>
