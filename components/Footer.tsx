@@ -27,27 +27,27 @@ export default function Footer() {
                 target="_blank"
                 className="p-2 rounded-xl border hover:bg-accent transition-colors"
               >
-                <Github className="w-4 h-4 github-icon" />
+                <Github className="w-4 h-4" />
               </Link>
               <Link
                 href="https://www.linkedin.com/in/prisbyb/"
                 target="_blank"
                 className="p-2 rounded-xl border hover:bg-accent transition-colors"
               >
-                <Linkedin className="w-4 h-4 linkedin-icon" />
+                <Linkedin className="w-4 h-4" />
               </Link>
               <Link
                 href="https://instagram.com/benprisby"
                 target="_blank"
                 className="p-2 rounded-xl border hover:bg-accent transition-colors"
               >
-                <Instagram className="w-4 h-4 instagram-icon" />
+                <Instagram className="w-4 h-4" />
               </Link>
               <Link
                 href="mailto:bentprisby@gmail.com"
                 className="p-2 rounded-xl border hover:bg-accent transition-colors"
               >
-                <Mail className="w-4 h-4 text-muted-foreground hover:text-foreground" />
+                <Mail className="w-4 h-4" />
               </Link>
             </div>
           </motion.div>
@@ -97,7 +97,7 @@ export default function Footer() {
             <h4 className="font-semibold mb-4">Contact Info</h4>
             <div className="space-y-2 text-muted-foreground">
               <p>bentprisby@gmail.com</p>
-              <p>Metro Detroit, Michigan</p>
+              <p>East Lansing, Michigan</p>
               <p>Michigan State University</p>
             </div>
           </motion.div>
